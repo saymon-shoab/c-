@@ -1,15 +1,15 @@
-#include <iostream>
+
+#include<iostream>
+// #include<bits/stdc++.h>
 
 using namespace std;
 
 int main(){
-    int x;
-    // single input single output
-    cin >> x;
-    cout << x; 
-    // multiple input multiple output
-    int a,b;
-    cin >>a>>b;
-    cout<<a<<b;
+  
+    int x = 10;
+    int *y = &x;
+    cout<<x<<"\n";
+    cout<<y<<"\n";
+    cout<<*y<<"\n";
     return 0;
 }
