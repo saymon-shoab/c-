@@ -85,19 +85,80 @@ public:
         // O(1);
         return sz;
     }
+    void InsertAtAnyIndex(int index, int value){
+        if (index<0 || index>sz)
+        {
+            return;
+        }
+        if (index==0)
+        {
+            InsertAtHead(value);
+            return;
+        }
+        sz++;
+        node *a = head;
+        int cur_index = 0;
+        while (cur_index!=index-1)
+        {
+            a = a->nxt;
+            cur_index++;
+        }
+        node *newnode = CreateNewNode(value);
+        newnode->nxt = a->nxt;
+        a->nxt = newnode;
+    }
+    void DeleteAtHead(){
+        if (head==NULL)
+        {
+            return;
+        }
+        sz--;
+        node *a = head;
+        head = a->nxt;
+        delete a;
+    }
+    void DeleteAnyIndex(int index){
+        if (index<0 || index>sz-1)
+        {
+            return;
+        }
+        
+        if (index==0)
+        {
+            DeleteAtHead();
+            return;
+        }
+        sz--;
+        node *a = head;
+        int cur_index=0;
+        while (cur_index != index-1)
+        {
+            a = a->nxt;
+            cur_index++;
+        }
+        node *b = a->nxt;
+        a->nxt = b->nxt;
+        delete b;
+    }
 };
 
 int main() {
 LinkedList l;
-cout<<l.getSize()<<"\n";
-
 l.InsertAtHead(10);
-cout<<l.getSize()<<"\n";
-
 l.InsertAtHead(5);
+l.InsertAtHead(8);
+l.Traverse();
+l.InsertAtAnyIndex(1,100);
+l.Traverse();
+l.InsertAtAnyIndex(4,200);
+l.Traverse();
+cout<<l.getSize()<<"\n";
+l.DeleteAtHead();
+l.Traverse();
+cout<<l.getSize()<<"\n";
+l.DeleteAnyIndex(2);
+l.Traverse();
 cout<<l.getSize()<<"\n";
 
-l.InsertAtHead(8);
-cout<<l.getSize()<<"\n";
     return 0;
 }
