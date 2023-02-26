@@ -117,6 +117,25 @@ public:
         head = a->nxt;
         delete a;
     }
+    void InsertAfterValue (int value, int data){
+        node *a = head;
+        while (a != NULL)
+        {
+            if(a->data==value){
+                break;
+            }
+            a = a->nxt;
+        }
+        if (a==NULL)
+        {
+            cout<<value<<"doesn,t exist in linked-list.\n";
+            return;
+        }
+        sz++;
+        node *newnode = CreateNewNode(data);
+        newnode->nxt = a->nxt;
+        a->nxt=newnode;
+    }
     void DeleteAnyIndex(int index){
         if (index<0 || index>sz-1)
         {
@@ -140,25 +159,33 @@ public:
         a->nxt = b->nxt;
         delete b;
     }
+    // print the reverce order...
+    void RevercePrint2(node *a){
+        if (a==NULL)
+        {
+            return;
+        }
+        RevercePrint2(a->nxt);
+        cout<<a->data<<" ";
+    }
+     void RevercePrint(){
+        RevercePrint2(head);
+        cout<<"\n";
+    }
 };
 
 int main() {
-LinkedList l;
-l.InsertAtHead(10);
-l.InsertAtHead(5);
-l.InsertAtHead(8);
-l.Traverse();
-l.InsertAtAnyIndex(1,100);
-l.Traverse();
-l.InsertAtAnyIndex(4,200);
-l.Traverse();
-cout<<l.getSize()<<"\n";
-l.DeleteAtHead();
-l.Traverse();
-cout<<l.getSize()<<"\n";
-l.DeleteAnyIndex(2);
-l.Traverse();
-cout<<l.getSize()<<"\n";
 
+    LinkedList l;
+    l.InsertAtHead(10);
+    l.InsertAtHead(5);
+    l.InsertAtHead(8);
+    l.InsertAtHead(34);
+    // l.Traverse();
+    // l.InsertAfterValue(10,10);
+    l.Traverse();
+    l.RevercePrint();
+    l.Traverse();
+    // cout<<l.getSize()<<"\n";
     return 0;
 }

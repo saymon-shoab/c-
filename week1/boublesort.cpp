@@ -1,5 +1,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
+#include<vector>
+
 using namespace std;
 /*
 TIME COMPLEXITY O(1);
